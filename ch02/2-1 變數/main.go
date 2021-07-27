@@ -1,25 +1,40 @@
 package main
 
-import "fmt"
-
 func main() {
-	var a int = 100 //基礎宣告模式 (var 變數名稱 變數型態 = 數值)
-	var b = "abc" //自動辦別資料型態
-	c := 123  //var自動判別之簡寫
-	fmt.Printf("%d\n%s\n%d\n",a,b,c) //格式化印出
 
-	d,e := 'e','d'  //多重宣告
-	d,e = e,d  //互換
-	fmt.Printf("%c,%c\n",d,e)
+	/* 變數宣告部分 */
+	//基礎宣告模式之一 : 有指定變數型態，非同句賦值
+	var a int  //var 變數名稱 變數型態
+	a = 10    //變數型態 = 數值
+	println(a)
 
-	f,_ := 'f','g'  //_為匿名變量，把值吃掉用
-	fmt.Printf("%c\n",f)
+	//基礎宣告模式之二 : 有指定變數型態
+	var b int = 20  //var 變數名稱 變數型態 = 數值
+	println(b)
 
-	temp :=
-		`Line 01
-Line 02`
-	fmt.Println(temp)
+	//基礎宣告模式之三 : 編譯器自動判斷變數型態
+	var c = 30
+	println(c)
 
-	g :=  "abc"
-	fmt.Printf("%T , %v , %+v , %#v\n", g,g,g,g)
+	// 基礎宣告模式之四 : 批量宣告
+	var (
+		d int  //預設為 0
+		f float32 //預設為 0
+	)
+	println(d)
+	println(f)
+
+	// 簡短聲明模式之一 : 宣告並賦值單個、自動判斷型態
+	g := 40
+	println(g)
+
+	// 簡短聲明模式之二 : 宣告並賦值多個、自動判斷型態
+	h,i := 50,60
+	println(h)
+	println(i)
+
+
+	/* 變數多重賦值部分 */
+
+	/* 匿名變量部分 */
 }
