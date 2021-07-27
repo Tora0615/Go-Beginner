@@ -2,7 +2,7 @@ package main
 
 func main() {
 
-	/* 變數宣告部分 */
+	/* A. 變數宣告部分 */
 	//基礎宣告模式之一 : 有指定變數型態，非同句賦值
 	var a int  //var 變數名稱 變數型態
 	a = 10    //變數型態 = 數值
@@ -33,8 +33,29 @@ func main() {
 	println(h)
 	println(i)
 
+	/*------------------------*/
+	/* B. 變數多重賦值部分 */
+	var j int = 80
+	var k int = 70
 
-	/* 變數多重賦值部分 */
+	//左值右值按照左到右順序賦值
+	j,k = k,j
+	println(j,k)
 
-	/* 匿名變量部分 */
+	/*------------------------*/
+	/* C. 匿名變量部分 */
+
+	//GetData()函數要宣告在main函數外
+
+	// 捨棄第二個回傳值
+	l,_ := GetData()
+	// 捨棄第一個回傳值
+	_,m := GetData()
+
+	println(l)
+	println(m)
+}
+
+func GetData() (int,int){
+	return 90,100
 }
