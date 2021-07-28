@@ -8,8 +8,8 @@
     * 浮點數型 (float)
     * 複數型 (complex)
     * 布林變數型 (bool)
-    * 字符型 (string)
-    * 字串型 (byte, rune)
+    * 字串型 (string)
+    * 字元型 (byte, rune)
 * 複合變數型態 (衍生資料型態\別，Derived DataType)
     * 陣列 (array)
     * 切片 (slice)
@@ -127,8 +127,8 @@ fmt.Println("complexValue2 虛數 =", imag(complexValue2))
   fmt.Printf("%s",stringC)
   
   // Output : 
-  03 一串加了換行
-  轉義符號的文字C
+  // 03 一串加了換行
+  // 轉義符號的文字C
   ```
 
 * 同樣的可以利用反引號"\`"直接宣告多行字串。多行字串中，未靠左到底的所有 Tab 與空格都會被計入
@@ -140,9 +140,9 @@ fmt.Println("complexValue2 虛數 =", imag(complexValue2))
   fmt.Printf("%s",stringD)
 
   // Output : 
-  04 多行字串範例
-      未靠左，有 Tab 的示範
-  靠左的示範
+  // 04 多行字串範例
+  //     未靠左，有 Tab 的示範
+  // 靠左的示範
   ```
 
 * 在多行字串中，放入程式碼是不會被編譯器識別的
@@ -154,15 +154,52 @@ fmt.Println("complexValue2 虛數 =", imag(complexValue2))
   fmt.Printf("%s",stringWithCode)
 
   // Output : 
-  05 stringWithCode
-  a := 10
-  print (a)
+  // 05 stringWithCode
+  // a := 10
+  // print (a)
   ```
   
-## C. 轉義字符
+## C. 轉義字元
 * 回車符 return，返回行首 : \r
 * 換行符號 new line : \n
 * Tab : \t
 * 單引號 : \'
 * 雙引號 : \"
 * 反斜線 : \\
+
+# 字元類型 : 
+## A. 類型
+有兩種 : byte 與 rune
+* byte 是 uint8 的別名類型
+* rune 是 int32 的別名類型 
+  
+## B. 特性與說明
+* byte 
+  * 表示 UTF-8 字串單個字元的值
+  * 大小為 1 個 byte (8bit)
+* rune
+  * 表示單個 unicode 字符
+  * 大小為 4 個 byte (32bit)
+  
+## C. 宣告與使用
+使用單引號 ' ' 包起來宣告
+
+由於 byte 是 uint8、rune 是 int32 的別名類型，若是利用格式化預設印出符 %v，顯示出來的不會是預期的字元，因此要指定印出類型。
+
+```go= 
+var byteA byte = 'a'
+fmt.Printf("byte 預設型態印出 : %v\n", byteA)
+fmt.Printf("byte 指定型態印出 : %c\n", byteA)
+
+// Output
+// byte 預設型態印出 : 97
+// byte 指定型態印出 : a
+
+var runeA rune = '龜'
+fmt.Printf("rune 預設型態印出 : %v\n", runeA)
+fmt.Printf("rune 指定型態印出 : %c\n", runeA)
+
+// Output
+// rune 預設型態印出 : 40860
+// rune 指定型態印出 : 龜
+```
