@@ -19,3 +19,47 @@
     * 通道 (channel)
     * 介面 (interface)
     * 指標 (pointer)
+  
+在此單元，只介紹基礎變數型態
+
+# 整數型 (int)
+
+## A. 分類
+整數分兩大類 
+* 有符號的整數 (signed integer)
+  * 指的是有正負號之分的整數
+  * int, int8, int16, int32, int64
+* 無符號的整數 (unsigned integer)
+  * 指的是只有正的整數
+  * uint, uint8, uint16, uint32, uint64
+  
+特殊的 int : uintptr
+* 用來存 pointer 
+
+## B. 取值範圍
+int / uint 後的 8,16,32,64 指的是容許多少 **bit** 
+  * 例如 8 指的就是可容許 2 的 8 次方個數字
+    * 2 的 8 次方為 256 
+      * 在 int 中的範圍就是 -128 ~ 127
+      * 在 uint 中的範圍就是 0 ~ 255
+  
+若 int 後無指定要多少 bit (如單純的 int / uint 宣告)，取值範圍則是取決於系統
+* 若系統為 32 位元，則是 int / uint 32
+* 若系統為 64 位元，則是 int / uint 64
+
+## C. 詳細取值範圍
+* uint
+  * uint8       : the set of all unsigned  8-bit integers (0 to 255)
+  * uint16      : the set of all unsigned 16-bit integers (0 to 65535)
+  * uint32      : the set of all unsigned 32-bit integers (0 to 4294967295)
+  * uint64      : the set of all unsigned 64-bit integers (0 to 18446744073709551615)
+* int
+  * int8        : the set of all signed  8-bit integers (-128 to 127)
+  * int16       : the set of all signed 16-bit integers (-32768 to 32767)
+  * int32       : the set of all signed 32-bit integers (-2147483648 to 2147483647)
+  * int64       : the set of all signed 64-bit integers (-9223372036854775808 to 9223372036854775807)
+* uintptr  
+  * an unsigned integer large enough to store the uninterpreted bits of a pointer value
+
+  
+# 浮點數型 (float)
