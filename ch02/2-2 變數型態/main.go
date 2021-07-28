@@ -60,5 +60,14 @@ print (a)
 	fmt.Printf("%s",stringWithCode)
 	fmt.Printf("-------------------------------\n")
 
+	/*字元*/
+	var byteA byte = 'a'
+	fmt.Printf("byte 是 uint8 的別名類型，表示 UTF-8 字串單個字元的值\n")
+	fmt.Printf("byte 預設型態印出 : %v\n", byteA)
+	fmt.Printf("byte 指定型態印出 : %c\n", byteA)
 
+	var runeA rune = '龜'
+	fmt.Printf("rune 是 int32 的別名類型，表示單個 unicode 字符\n")
+	fmt.Printf("rune 預設型態印出 : %v\n", runeA)
+	fmt.Printf("rune 指定型態印出 : %c\n", runeA)
 }
