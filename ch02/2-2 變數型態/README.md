@@ -158,3 +158,11 @@ fmt.Println("complexValue2 虛數 =", imag(complexValue2))
   a := 10
   print (a)
   ```
+  
+## C. 轉義字符
+* 回車符 return，返回行首 : \r
+* 換行符號 new line : \n
+* Tab : \t
+* 單引號 : \'
+* 雙引號 : \"
+* 反斜線 : \\
