@@ -98,15 +98,63 @@ fmt.Println("complexValue2 虛數 =", imag(complexValue2))
 // complexValue2 虛數 = 12
 ```
 
-# 布林變數型
-## 類型
+# 布林變數型 (String)
+## A. 類型
 就只有一種 : bool 
 
-## 特性
+## B. 特性
 1. 只可以是常量 true 或 false
    * 不像 C 語言，非 0 為真、 0 為假
 2. 無法參與數值運算、也無法進行型態轉換
 
+# 字串類型 (String)
+## A. 類型
+只有一種 : string
 
+## B. 單行與多行宣告
+* 預設用雙引號宣告的一長串字串，是無法為了排版而直接用Enter進行換行宣告
+* 若按了 Enter 宣告，其仍是同一句，印出來不會換行
+  ```go=
+  stringB := "02 一串按了Enter" +
+          "但同一行的文字B\n"
+  fmt.Printf("%s",stringB)
+  
+  // Output : 02 一串按了Enter但同一行的文字B
+  ```
+* 若要印出換行可以用換行轉義符號"\n"
+  ```go=
+  stringC := "03 一串加了換行\n轉義符號的文字C\n"
+  fmt.Printf("%s",stringC)
+  
+  // Output : 
+  03 一串加了換行
+  轉義符號的文字C
+  ```
 
+* 同樣的可以利用反引號"\`"直接宣告多行字串。多行字串中，未靠左到底的所有 Tab 與空格都會被計入
+  ```go=
+  stringD := `04 多行字串範例
+    未靠左，有 Tab 的示範
+  靠左的示範
+  `
+  fmt.Printf("%s",stringD)
 
+  // Output : 
+  04 多行字串範例
+      未靠左，有 Tab 的示範
+  靠左的示範
+  ```
+
+* 在多行字串中，放入程式碼是不會被編譯器識別的
+  ```
+  stringWithCode := `05 stringWithCode
+  a := 10
+  print (a)
+  `
+  fmt.Printf("%s",stringWithCode)
+
+  // Output : 
+  05 stringWithCode
+  a := 10
+  print (a)
+  ```
