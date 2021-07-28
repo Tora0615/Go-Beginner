@@ -47,7 +47,7 @@ int / uint 後的 8,16,32,64 指的是容許多少 **bit**
 * 若系統為 32 位元，則是 int / uint 32
 * 若系統為 64 位元，則是 int / uint 64
 
-## C. 詳細取值範圍
+## C. 取值範圍總表
 * uint
   * uint8       : the set of all unsigned  8-bit integers (0 to 255)
   * uint16      : the set of all unsigned 16-bit integers (0 to 65535)
@@ -63,3 +63,50 @@ int / uint 後的 8,16,32,64 指的是容許多少 **bit**
 
   
 # 浮點數型 (float)
+## A. 分類
+有兩種類型 : float32、float64 
+## B. 取值範圍
+* float32 
+  * 最大值 : 3.402823 x 10^38
+  * 正數最小值 : 1.401298 x 10^-45
+* float64 
+  * 最大值 : 1.797693 x 10^308
+  * 正數最小值 : 4.940656 x 10^-324 
+  
+# 複數 (complex)
+用以表示數學中的複數
+## A. 分類
+有兩種類型 : complex64、complex128。
+
+初始化讓 Go 自動判斷型態的型態會是 complex128
+
+## B. 取值範圍
+complex64 : 實數與虛數範圍個別是一個 float32 的範圍
+complex128 : 實數與虛數範圍個別是一個 float64 的範圍
+
+## C. 宣告與印出
+```go= 
+var complexValue1 complex64 = 1.2 + 12i
+fmt.Println("complexValue1 =", complexValue1)
+// Output : complexValue1 = (1.2+12i)
+
+complexValue2 := complex(3.2, 12)  //自動判斷預設 complex128
+fmt.Println("complexValue2 實數 =", real(complexValue2))
+fmt.Println("complexValue2 虛數 =", imag(complexValue2))
+// Ountput :
+// complexValue2 實數 = 3.2
+// complexValue2 虛數 = 12
+```
+
+# 布林變數型
+## 類型
+就只有一種 : bool 
+
+## 特性
+1. 只可以是常量 true 或 false
+   * 不像 C 語言，非 0 為真、 0 為假
+2. 無法參與數值運算、也無法進行型態轉換
+
+
+
+
