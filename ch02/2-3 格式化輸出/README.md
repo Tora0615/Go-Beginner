@@ -112,7 +112,7 @@ fmt.Printf("%X\n", intA)  //十六進位(大寫)
     * %c : 用此值對應的 unicode 值 **印出字元**
 * 幾乎不會用
     * %U : 用 unicode 格式表示
-    * %q : 用以印出單引號圍繞的字符字面值(字元)，由 Go 語法安全地轉義
+    * %q : 用以印出**單引號**圍繞的字符字面值(此處為字元)，由 Go 語法安全地轉義
 ## B. 例子
 ```go=
 charA := 123
@@ -179,26 +179,52 @@ fmt.Println(imag(complexB))  //印出虛數部分
 // output : 4
 ```
 
-# 印出形式
+# 字串與字節陣列 (byte array) 印出形式
 ## A. 印出格式類型
-有種
+有4種 : 
+* 常用
+    * %s : 直接輸出字串或是字節陣列 (byte array) (若是 rune 陣列，%s 印不出來)
+* 不那麼常用
+    * %x : 每用到一個 byte，就改用兩個十六進位字元表示(小寫)
+    * %X : 每用到一個 byte，就改用兩個十六進位字元表示(大寫)
+* 不常用
+    * %q : 用以印出**雙引號**圍繞的字符字面值(此處為字串)，由 Go 語法安全地轉義
 ## B. 例子
 ```go=
+stringA := "一串文字"
+fmt.Printf("%s\n", stringA)  //直接輸出字串或是字節陣列 (byte array) (若是 rune 陣列，%s 印不出來)
+// output : 一串文字
+fmt.Printf("%x\n", stringA)  //每用到一個 byte，就改用兩個十六進位字元表示(小寫)
+// output : e4b880e4b8b2e69687e5ad97
+fmt.Printf("%X\n", stringA)  //每用到一個 byte，就改用兩個十六進位字元表示(大寫)
+// output : E4B880E4B8B2E69687E5AD97
+fmt.Printf("%q\n", stringA)  //用以印出雙引號圍繞的字符字面值(此處為字串)，由 Go 語法安全地轉義
+// output : "一串文字"
 
+// 字元陣列
+charArray := []byte{'a','b','c','d'}  // 若是 rune 陣列，%S 印不出來
+fmt.Printf("%T, %s\n", charArray,charArray)
+// output : []uint8, abcd
+fmt.Printf("%T, %x\n", charArray,charArray)
+// output : []uint8, 61626364
+fmt.Printf("%T, %X\n", charArray,charArray)
+// output : []uint8, 61626364
+fmt.Printf("%T, %q\n", charArray,charArray)
+// output : []uint8, "abcd"
 ```
 
-# 字元、字串、Unicode 與 utf-8 編碼
+# 補充 : 字元、字串、Unicode 與 utf-8 編碼
 ## 問題
 為什麼 string "龜龜" 16 進制格式化輸出 (%X) 為 E9BE9CE9BE9C
 
 而不是字元 '龜' 的 16 進制格式化輸出 9F9C 拿來重複兩次呢 ?
 
-## 簡答
+### A. 簡答
 因為 Go 的字元 16 進制格式化輸出，是直接將 Unicode 的碼點用 16 進位顯示。(Unicode 碼點原本是以 int32 儲存起來的)
 
 而字串的 16 進制格式化輸出，是顯示文字的 unicode 經 utf-8 編碼過的 16 進位結果
 
-## 十六進位字串轉回個別字元之細節剖析
+### B. 十六進位字串轉回個別字元之細節剖析
 1. 已知 string "龜龜" %X 輸出為 : 
    * E9BE 9CE9 BE9C
 
@@ -224,5 +250,5 @@ fmt.Println(imag(complexB))  //印出虛數部分
    * 9 F 9 C
 8. 分別拿去 Unicode 字元解碼，可得都是 '龜'
 
-## 參考資料
+### C. 參考資料
 [UTF-8 編碼格式之簡單講解](https://davidhu0903ex3.pixnet.net/blog/post/468848723-utf-8-%E7%B7%A8%E7%A2%BC%E6%A0%BC%E5%BC%8F%E4%B9%8B%E7%B0%A1%E5%96%AE%E8%AC%9B%E8%A7%A3)
