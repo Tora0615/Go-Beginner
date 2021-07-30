@@ -95,8 +95,24 @@ func main()  {
 	fmt.Printf("---------------------------------\n")
 
 	/*---------------------------------------------------------------*/
+	// 字串
+	stringA := "一串文字"
+	fmt.Printf("%s\n", stringA)  //直接輸出字串或是字節陣列 (byte array)
+	fmt.Printf("%x\n", stringA)  //每用到一個 byte，就改用兩個十六進位字元表示(小寫)
+	fmt.Printf("%X\n", stringA)  //每用到一個 byte，就改用兩個十六進位字元表示(大寫)
+	fmt.Printf("%q\n", stringA)  //用以印出雙引號圍繞的字符字面值(此處為字串)，由 Go 語法安全地轉義
 
-	/* 在十六顯示下，字串為何不是字元重複兩次呢? */
+	// 字元陣列
+	charArray := []byte{'a','b','c','d'}  // 若是 rune 陣列，%S 印不出來
+	fmt.Printf("%T, %s\n", charArray,charArray)
+	fmt.Printf("%T, %x\n", charArray,charArray)
+	fmt.Printf("%T, %X\n", charArray,charArray)
+	fmt.Printf("%T, %q\n", charArray,charArray)
+	fmt.Printf("---------------------------------\n")
+
+	/*---------------------------------------------------------------*/
+
+	/* 補充 : 在十六顯示下，字串為何不是字元重複兩次呢? */
 	wordTurtle := '龜'
 	fmt.Printf("%T,%X\n",wordTurtle ,wordTurtle)
 	stringTurtle := "龜龜"
