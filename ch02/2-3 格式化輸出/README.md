@@ -107,7 +107,7 @@ fmt.Printf("%X\n", intA)  //十六進位(大寫)
 
 # 字元印出形式
 ## A. 印出格式類型
-有種
+有3種
 * 常用
     * %c : 用此值對應的 unicode 值 **印出字元**
 * 幾乎不會用
@@ -128,6 +128,64 @@ fmt.Printf("%T, %U, %T, %U\n", charA,charA,charB,charB)  //用 unicode 格式表
 // Output : int, U+007B, int32, U+9F9C
 ```
 
+# 浮點數印出形式
+## A. 印出格式類型
+有 7 種 : 
+* 常用
+    * %f : 印出含小數的數字 (預設值等同於 %.6f)
+        * 可在 %f 中間加 .數字，改變要呈現小數點幾位
+    * %F : 等同於 %f
+    * %e : 將小數用科學表示法表示 (預設值等同於 %.6e)
+        * 可在 %e 中間加 .數字，改變要呈現小數點幾位
+    * %E : 幾乎等同於 %e，但科學記號輸出裡的 e 會是大寫
+* 不那麼常用
+    * %g : 自動選擇 %f 或是 %e (e小寫)
+    * %G : 自動選擇 %f 或是 %E (e大寫)
+* 不常用
+    * %b : 用二進位制表示
+    
+## B. 例子
+```go=
+floatA := 1234567.1234567
+fmt.Printf("%.2f\n", floatA)  //限制到小數點下兩位
+// output : 1234567.12
+fmt.Printf("%e, %E\n", floatA,floatA)  //科學記號輸出裡的 e 小寫 / 大寫
+// output : 1.234567e+06, 1.234567E+06
+
+floatB := 43.21
+fmt.Printf("%g, %g\n", floatA,floatB)  //自動選擇 %f 或是 %e (小寫)
+// output : 1.2345671234567e+06, 43.21
+fmt.Printf("%G, %G\n", floatA,floatB)  //自動選擇 %f 或是 %E (大寫)
+// output : 1.2345671234567E+06, 43.21
+
+fmt.Printf("%b\n", floatB)  //用二進位表示
+// output : 6081266871833723p-47
+```
+
+# 複數印出形式
+## A. 印出格式類型
+無格式化輸出佔位符號，較為特殊，只能用 fmt.Print / fmt.Println。
+
+## B. 例子
+```go=
+complexA := 1 + 2i  // 可以這樣設定初值
+fmt.Println(complexA)  //印整個複數
+// output : (1+2i)
+
+complexB := complex(3,4)  // 也能這樣設定初值
+fmt.Println(real(complexB))  //印出實數部分
+// output : 3
+fmt.Println(imag(complexB))  //印出虛數部分
+// output : 4
+```
+
+# 印出形式
+## A. 印出格式類型
+有種
+## B. 例子
+```go=
+
+```
 
 # 字元、字串、Unicode 與 utf-8 編碼
 ## 問題
