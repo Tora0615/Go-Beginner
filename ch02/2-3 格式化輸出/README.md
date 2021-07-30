@@ -3,8 +3,60 @@
 格式化輸出通常都會使用 fmt package，包含以下幾種印出格式。
 
 # 通用印出格式
+## A. 印出格式類型
+有四種 : 
+* %v
+    * %v print the value in a default format 
+    * 印出 Go 語言自動判斷的默認格式
+* %+v
+    * when printing structs, the plus flag (%+v) adds field names 
+    * 在印出結構的時候，會印出欄位值 (Field,對岸稱字段) 
+* %#v
+    * a Go-syntax representation of the value
+    * 用 GO 語法印出值
+* %T
+    * 印出值的類型
+    
+## B. 範例 : 
+### 1. 小範例 : 
+```go=
+testIntA := 32
+fmt.Printf("%T,%v\n", testIntA,testIntA)
+testString := "測試"
+fmt.Printf("%T,%v\n", testString,testString)
+var testCharA byte = 'a'
+fmt.Printf("%T,%v\n", testCharA,testCharA)  // byte 為 uint8 的別名，因此預設不會印出該字元
+var testCharB rune = '龜'
+fmt.Printf("%T,%v\n", testCharB,testCharB)  // rune 為 int32 的別名，因此預設不會印出該字元
+```
+
+### 2. %v %+v %#v 的不同
+```go=
+//宣告結構
+type student struct {  
+    id int
+    name string
+}
+//結構賦值
+studentA := student{id: 01, name: "小明"}  
+
+// %v print the value in a default format  (以預設格式印出)
+fmt.Printf("%T,%v\n",studentA,studentA)  
+// Output 只印出值 : main.student, {1 小明}
+
+//when printing structs, the plus flag (%+v) adds field names (在印出結構的時候，會印出欄位值 (Field,對岸稱字段) )
+fmt.Printf("%T,%+v\n",studentA,studentA) 
+// Output 印出欄位 & 值 : main.student, {id:1 name:小明}
+
+//a Go-syntax representation of the value (用 GO 語法印出值)
+fmt.Printf("%T,%#v\n",studentA,studentA) 
+// Output 印出型態 & 欄位 & 值 : main.student, main.student{id:1, name:"小明"}
+```
+
 
 # 布林型態印出格式
+
+
 
 # 整數印出格式
 
@@ -44,3 +96,6 @@
    * 9 F 9 C 
    * 9 F 9 C
 8. 分別拿去 Unicode 字元解碼，可得都是 '龜'
+
+## 參考資料
+[UTF-8 編碼格式之簡單講解](https://davidhu0903ex3.pixnet.net/blog/post/468848723-utf-8-%E7%B7%A8%E7%A2%BC%E6%A0%BC%E5%BC%8F%E4%B9%8B%E7%B0%A1%E5%96%AE%E8%AC%9B%E8%A7%A3)
