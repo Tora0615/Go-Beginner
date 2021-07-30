@@ -55,10 +55,79 @@ fmt.Printf("%T,%#v\n",studentA,studentA)
 
 
 # 布林型態印出格式
-
-
+## A. 印出格式類型
+只有一種 : 
+* %t
+    * 會印出 true or false
+## B. 範例
+```go=
+boolA := true
+fmt.Printf("%T, %t", boolA, boolA)
+// output : bool, true
+```
 
 # 整數印出格式
+## A. 印出格式類型
+有 6 種 : 
+* 常用 : 
+    * %d : 用以印出十進位制整數
+        * 進階用法 : 前面加數字
+            * %8d : 表示整數長度有8個，不足8個 **補空格**，超出以實際為準
+            * %08d : 表示整數長度有8個，不足8個 **補0**，超出以實際為準
+* 不那麼常用 : 
+    * %b : 用以印出二進位制整數
+    * %o : 用以印出八進位制整數
+    * %x : 用以印出十六進位制整數(小寫)
+    * %X : 用以印出十六進位制整數(大寫)
+
+
+## B. 例子
+```go=
+intA := 123
+// 常用
+fmt.Printf("%d\n",intA)   //印出整數
+// Output : 123
+fmt.Printf("%1d\n",intA)  //表示整數長度有1個，不足1個補空格，超出以實際為準
+// Output : 123
+fmt.Printf("%4d\n",intA)  //表示整數長度有4個，不足4個補空格，超出以實際為準
+// Output : (空格)123
+fmt.Printf("%04d\n",intA) //表示整數長度有4個，不足4個補0，超出以實際為準
+// Output : 0123
+
+// 不那麼常用
+fmt.Printf("%b\n", intA)  //二進位
+// Output : 1111011
+fmt.Printf("%o\n", intA)  //八進位
+// Output : 173
+fmt.Printf("%x\n", intA)  //十六進位(小寫)
+// Output : 7b
+fmt.Printf("%X\n", intA)  //十六進位(大寫)
+// Output : 7B
+```
+
+# 字元印出形式
+## A. 印出格式類型
+有種
+* 常用
+    * %c : 用此值對應的 unicode 值 **印出字元**
+* 幾乎不會用
+    * %U : 用 unicode 格式表示
+    * %q : 用以印出單引號圍繞的字符字面值(字元)，由 Go 語法安全地轉義
+## B. 例子
+```go=
+charA := 123
+charB := '龜'
+// 常用
+fmt.Printf("%T, %c, %T, %c\n",charA,charA,charB,charB)  //用此值對應的 unicode 值印出字元
+// Output : int, {, int32, 龜
+
+// 不常用
+fmt.Printf("%T, %q, %T, %q\n", charA,charA,charB,charB)  //用以印出單引號圍繞的字符字面值(字元)，由 Go 語法安全地轉義
+// Output : int, '{', int32, '龜'
+fmt.Printf("%T, %U, %T, %U\n", charA,charA,charB,charB)  //用 unicode 格式表示
+// Output : int, U+007B, int32, U+9F9C
+```
+
 
 # 字元、字串、Unicode 與 utf-8 編碼
 ## 問題
