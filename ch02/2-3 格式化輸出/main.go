@@ -72,6 +72,30 @@ func main()  {
 
 	/*---------------------------------------------------------------*/
 
+	/*浮點數型態*/
+	floatA := 1234567.1234567
+	fmt.Printf("%.2f\n", floatA)  //限制到小數點下兩位
+	fmt.Printf("%e,%E\n", floatA,floatA)  //科學記號輸出裡的 e 小寫 / 大寫
+
+	floatB := 43.21
+	fmt.Printf("%g,%g\n", floatA,floatB)  //自動選擇 %f 或是 %e (小寫)
+	fmt.Printf("%G,%G\n", floatA,floatB)  //自動選擇 %f 或是 %E (大寫)
+
+	fmt.Printf("%b\n", floatB)  //用二進位表示
+	fmt.Printf("---------------------------------\n")
+
+	/*---------------------------------------------------------------*/
+	/*複數*/
+	complexA := 1 + 2i  // 可以這樣設定初值
+	fmt.Println(complexA)  //印整個複數
+
+	complexB := complex(3,4)  // 也能這樣設定初值
+	fmt.Println(real(complexB))  //印出實數部分
+	fmt.Println(imag(complexB))  //印出虛數部分
+	fmt.Printf("---------------------------------\n")
+
+	/*---------------------------------------------------------------*/
+
 	/* 在十六顯示下，字串為何不是字元重複兩次呢? */
 	wordTurtle := '龜'
 	fmt.Printf("%T,%X\n",wordTurtle ,wordTurtle)
